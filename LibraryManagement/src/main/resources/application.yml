@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(jsOP2zcubO0Ib+vm5mDXD8516C8yDA8bDEV6oOa+dcea+zfSbXc7tctRouAfe7CS)
+    username: ENC(3gi1XLCwYUlFvo1yjTgODg==)
+    password: ENC(XdeiBvXRVvnHscatHORs8XQRVJw7CxOY)
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+#      ddl-auto: none
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        # sql 변수 생성 시 자동으로 ``으로 감싸준다.
+        globally_quoted_identifiers: true
+        # 콘솔에 뜨는 sql 보기 좋게 만들어준다.
+        format_sql: true
+
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
