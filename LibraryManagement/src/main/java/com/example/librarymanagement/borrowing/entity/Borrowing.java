@@ -23,9 +23,9 @@ public class Borrowing {
 
     @CreatedDate
     @NotNull
-    private LocalDateTime borrowDate;
+    private LocalDateTime borrowAt;
 
-    private LocalDateTime returnDate;
+    private LocalDateTime returnAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -45,10 +45,9 @@ public class Borrowing {
                 .build();
     }
 
-    /**
-     * 반날날짜를 현재시간으로 변경
-     */
+
+     // 반납시 날짜를 현재시간으로 변경
     public void updateReturnDate() {
-        this.returnDate = LocalDateTime.now();
+        this.returnAt = LocalDateTime.now();
     }
 }
