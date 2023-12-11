@@ -2,10 +2,7 @@ package com.example.librarymanagement.borrowing.service;
 
 import com.example.librarymanagement.books.dto.UpdateBooksRequest;
 import com.example.librarymanagement.books.dto.UpdateBooksResponse;
-import com.example.librarymanagement.borrowing.dto.CreateBorrowingRequest;
-import com.example.librarymanagement.borrowing.dto.CreateBorrowingResponse;
-import com.example.librarymanagement.borrowing.dto.UpdateBorrowingRequest;
-import com.example.librarymanagement.borrowing.dto.UpdateBorrowingResponse;
+import com.example.librarymanagement.borrowing.dto.*;
 
 public interface BorrowingService {
     /**
@@ -21,4 +18,6 @@ public interface BorrowingService {
      * @return UpdateBorrowingResponse
      */
     UpdateBorrowingResponse updateBorrowing(UpdateBorrowingRequest request);
+
+    ReadBorrowingResponse readBorrowingList(ReadBorrowingRequest request);
 }

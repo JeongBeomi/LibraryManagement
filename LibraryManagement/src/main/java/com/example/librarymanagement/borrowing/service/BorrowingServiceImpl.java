@@ -2,10 +2,7 @@ package com.example.librarymanagement.borrowing.service;
 
 import com.example.librarymanagement.books.entity.Books;
 import com.example.librarymanagement.books.repository.BooksRepository;
-import com.example.librarymanagement.borrowing.dto.CreateBorrowingRequest;
-import com.example.librarymanagement.borrowing.dto.CreateBorrowingResponse;
-import com.example.librarymanagement.borrowing.dto.UpdateBorrowingRequest;
-import com.example.librarymanagement.borrowing.dto.UpdateBorrowingResponse;
+import com.example.librarymanagement.borrowing.dto.*;
 import com.example.librarymanagement.borrowing.entity.Borrowing;
 import com.example.librarymanagement.borrowing.repository.BorrowingRepository;
 import com.example.librarymanagement.exception.exceptino_message.NotFoundExceptionMessage;
@@ -14,6 +11,9 @@ import com.example.librarymanagement.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -58,5 +58,19 @@ public class BorrowingServiceImpl implements BorrowingService {
         Books books = findBorrowing.getBooks().updateIsBorrowing();
 
         return UpdateBorrowingResponse.create(books, findBorrowing);
+    }
+
+    @Override
+    @Transactional
+    public ReadBorrowingResponse readBorrowingList(ReadBorrowingRequest request) {
+        List<Borrowing> borrowingsList = borrowingRepository.findByBooksIdWithUser(request.getBooksId());
+
+        List<ReadBorrowingInstance> borrowingHistory = new ArrayList<>();
+        for (Borrowing b : borrowingsList) {
+            borrowingHistory.add(ReadBorrowingInstance.create(b.getUser().getEmail(), b));
+        }
+
+        return new ReadBorrowingResponse(borrowingHistory);
+
     }
 }
