@@ -23,9 +23,9 @@ public class Borrowing {
 
     @CreatedDate
     @NotNull
-    private LocalDateTime borrowAt;
+    private LocalDateTime createdAt;
 
-    private LocalDateTime returnAt;
+    private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -41,6 +41,8 @@ public class Borrowing {
     public static Borrowing create(User user, Books book) {
         return Borrowing.builder()
                 .user(user)
+                .createdAt(LocalDateTime.now())
+                .updatedAt(null)
                 .books(book)
                 .build();
     }
@@ -48,6 +50,6 @@ public class Borrowing {
 
      // 반납시 날짜를 현재시간으로 변경
     public void updateReturnDate() {
-        this.returnAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 }
