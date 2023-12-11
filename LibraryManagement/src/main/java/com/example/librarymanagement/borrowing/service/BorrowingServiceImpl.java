@@ -42,18 +42,21 @@ public class BorrowingServiceImpl implements BorrowingService {
 
         Borrowing borrowing = Borrowing.create(findUser, findBooks);
         Borrowing saveBorrowing = borrowingRepository.save(borrowing);
-        Books books = findBooks.update();
+        Books books = findBooks.updateIsBorrowing();
 
 
         return CreateBorrowingResponse.create(books, findUser, saveBorrowing);
     }
 
-//    @Override
-//    @Transactional
-//    public UpdateBorrowingResponse updateBorrowing(UpdateBorrowingRequest request) {
-//        Books books = booksRepository.findById(request.getBooksId()).orElseThrow(
-//                () -> new NotFoundExceptionMessage(NotFoundExceptionMessage.NOT_FOUND_BOOKS)
-//        );
-//
-//    }
+    @Override
+    @Transactional
+    public UpdateBorrowingResponse updateBorrowing(UpdateBorrowingRequest request) {
+        Borrowing findBorrowing = borrowingRepository.findByBooksAndUpdatedAtNullWithBooks(request.getBooksId())
+                .orElseThrow(() -> new NotFoundExceptionMessage(NotFoundExceptionMessage.NOT_FOUND_BORROWING));
+
+        findBorrowing.updateReturnDate();
+        Books books = findBorrowing.getBooks().updateIsBorrowing();
+
+        return UpdateBorrowingResponse.create(books, findBorrowing);
+    }
 }

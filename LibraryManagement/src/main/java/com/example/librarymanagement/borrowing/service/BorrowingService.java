@@ -20,5 +20,5 @@ public interface BorrowingService {
      * @param request UpdateBorrowingRequest
      * @return UpdateBorrowingResponse
      */
-//    UpdateBorrowingResponse updateBorrowing(UpdateBorrowingRequest request);
+    UpdateBorrowingResponse updateBorrowing(UpdateBorrowingRequest request);
 }

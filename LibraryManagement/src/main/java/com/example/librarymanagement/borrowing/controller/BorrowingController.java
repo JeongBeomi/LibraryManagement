@@ -23,10 +23,10 @@ public class BorrowingController {
         return ResponseEntity.created(URI.create("/books")).body(createBorrowingResponse);
     }
 
-//    @PatchMapping
-//    public ResponseEntity<UpdateBorrowingResponse> updateBorrowing(@RequestBody UpdateBorrowingRequest request) {
-//        UpdateBorrowingResponse updateBorrowingResponse = borrowingService.updateBorrowing(request);
-//        return ResponseEntity.ok().body(updateBorrowingResponse);
-//
-//    }
+    @PatchMapping
+    public ResponseEntity<UpdateBorrowingResponse> updateBorrowing(@RequestBody UpdateBorrowingRequest request) {
+        UpdateBorrowingResponse updateBorrowingResponse = borrowingService.updateBorrowing(request);
+        return ResponseEntity.ok().body(updateBorrowingResponse);
+
+    }
 }
