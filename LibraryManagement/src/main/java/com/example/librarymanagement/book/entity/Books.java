@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="book")
+@Table(name="books")
 public class Books extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
+    @Column(name = "books_id")
     private Long id;
 
     @NotNull
