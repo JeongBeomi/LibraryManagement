@@ -51,7 +51,7 @@ public class Books extends BaseTimeEntity {
     }
 
     // 책 대여나 반납시 상태 변경
-    public Books update() {
+    public Books updateIsBorrowing() {
         this.isBorrowing = !this.isBorrowing;
         return this;
     }
