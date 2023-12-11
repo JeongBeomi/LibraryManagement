@@ -1,9 +1,6 @@
 package com.example.librarymanagement.borrowing.controller;
 
-import com.example.librarymanagement.borrowing.dto.CreateBorrowingRequest;
-import com.example.librarymanagement.borrowing.dto.CreateBorrowingResponse;
-import com.example.librarymanagement.borrowing.dto.UpdateBorrowingRequest;
-import com.example.librarymanagement.borrowing.dto.UpdateBorrowingResponse;
+import com.example.librarymanagement.borrowing.dto.*;
 import com.example.librarymanagement.borrowing.service.BorrowingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +14,31 @@ import java.net.URI;
 public class BorrowingController {
     private final BorrowingService borrowingService;
 
+    /**
+     * 책 대여
+     * @param request CreateBorrowingRequest
+     * @return ResponseEntity
+     */
     @PostMapping
     public ResponseEntity<CreateBorrowingResponse> createBorrowing(@RequestBody CreateBorrowingRequest request) {
         CreateBorrowingResponse createBorrowingResponse = borrowingService.createBorrowing(request);
         return ResponseEntity.created(URI.create("/books")).body(createBorrowingResponse);
     }
 
+    /**
+     * 책 반납
+     * @param request UpdateBorrowingRequest
+     * @return ResponseEntity
+     */
     @PatchMapping
     public ResponseEntity<UpdateBorrowingResponse> updateBorrowing(@RequestBody UpdateBorrowingRequest request) {
         UpdateBorrowingResponse updateBorrowingResponse = borrowingService.updateBorrowing(request);
         return ResponseEntity.ok().body(updateBorrowingResponse);
+    }
 
+    @GetMapping
+    public ResponseEntity<ReadBorrowingResponse> readBorrowingList(@RequestBody ReadBorrowingRequest request) {
+        ReadBorrowingResponse readBorrowingResponse = borrowingService.readBorrowingList(request);
+        return ResponseEntity.ok().body(readBorrowingResponse);
     }
 }
