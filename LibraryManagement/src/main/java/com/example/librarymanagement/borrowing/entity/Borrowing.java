@@ -1,14 +1,10 @@
 package com.example.librarymanagement.borrowing.entity;
 
-import com.example.librarymanagement.book.entity.Books;
+import com.example.librarymanagement.books.entity.Books;
 import com.example.librarymanagement.user.entity.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -17,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table(name="borrowing")
 public class Borrowing {
     @Id
