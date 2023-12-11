@@ -15,6 +15,11 @@ import java.net.URI;
 public class UserController {
     private final UserService userService;
 
+    /**
+     * 회원 가입
+     * @param createUserRequest CreateUserRequest
+     * @return ResponseEntity
+     */
     @PostMapping
     public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest createUserRequest) {
         CreateUserResponse createUserResponse = userService.createUser(createUserRequest);
