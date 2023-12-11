@@ -37,7 +37,7 @@ public class Books extends BaseTimeEntity {
                 .title(title)
                 .author(author)
                 .isbn(isbn)
-                .isBorrowing(true)
+                .isBorrowing(false)
                 .build();
 
     }
