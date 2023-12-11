@@ -4,6 +4,8 @@ import com.example.librarymanagement.books.entity.Books;
 import com.example.librarymanagement.books.repository.BooksRepository;
 import com.example.librarymanagement.borrowing.dto.CreateBorrowingRequest;
 import com.example.librarymanagement.borrowing.dto.CreateBorrowingResponse;
+import com.example.librarymanagement.borrowing.dto.UpdateBorrowingRequest;
+import com.example.librarymanagement.borrowing.dto.UpdateBorrowingResponse;
 import com.example.librarymanagement.borrowing.entity.Borrowing;
 import com.example.librarymanagement.borrowing.repository.BorrowingRepository;
 import com.example.librarymanagement.exception.exceptino_message.NotFoundExceptionMessage;
@@ -45,4 +47,13 @@ public class BorrowingServiceImpl implements BorrowingService {
 
         return CreateBorrowingResponse.create(books, findUser, saveBorrowing);
     }
+
+//    @Override
+//    @Transactional
+//    public UpdateBorrowingResponse updateBorrowing(UpdateBorrowingRequest request) {
+//        Books books = booksRepository.findById(request.getBooksId()).orElseThrow(
+//                () -> new NotFoundExceptionMessage(NotFoundExceptionMessage.NOT_FOUND_BOOKS)
+//        );
+//
+//    }
 }
