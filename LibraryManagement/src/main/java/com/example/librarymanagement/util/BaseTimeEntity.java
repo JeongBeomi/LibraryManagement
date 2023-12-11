@@ -20,9 +20,6 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-
-
-
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 
