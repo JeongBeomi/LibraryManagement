@@ -15,7 +15,7 @@ import java.net.URI;
 public class BorrowingController {
     private final BorrowingService borrowingService;
 
-    @PostMapping("/{bookId}")
+    @PostMapping
     public ResponseEntity<CreateBorrowingResponse> createBooks(@RequestBody CreateBorrowingRequest request) {
         CreateBorrowingResponse createBorrowingResponse = borrowingService.createBorrowing(request);
         return ResponseEntity.created(URI.create("/books")).body(createBorrowingResponse);

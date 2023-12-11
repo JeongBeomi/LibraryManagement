@@ -5,6 +5,7 @@ import com.example.librarymanagement.books.repository.BooksRepository;
 import com.example.librarymanagement.borrowing.dto.CreateBorrowingRequest;
 import com.example.librarymanagement.borrowing.dto.CreateBorrowingResponse;
 import com.example.librarymanagement.borrowing.entity.Borrowing;
+import com.example.librarymanagement.borrowing.repository.BorrowingRepository;
 import com.example.librarymanagement.exception.exceptino_message.NotFoundExceptionMessage;
 import com.example.librarymanagement.user.entity.User;
 import com.example.librarymanagement.user.repository.UserRepository;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BorrowingServiceImpl implements BorrowingService {
     private final BooksRepository booksRepository;
     private final UserRepository userRepository;
+    private final BorrowingRepository borrowingRepository;
 
 
     @Override
@@ -37,8 +39,10 @@ public class BorrowingServiceImpl implements BorrowingService {
         }
 
         Borrowing borrowing = Borrowing.create(findUser, findBooks);
+        Borrowing saveBorrowing = borrowingRepository.save(borrowing);
         Books books = findBooks.update();
 
-        return CreateBorrowingResponse.create(books, findUser, borrowing);
+
+        return CreateBorrowingResponse.create(books, findUser, saveBorrowing);
     }
 }

@@ -16,14 +16,14 @@ public class CreateBorrowingResponse {
     String email;
     Long booksId;
     String title;
-    LocalDateTime borrowAt;
+    LocalDateTime createdAt;
 
     public static CreateBorrowingResponse create(Books books, User user, Borrowing borrowing) {
         return CreateBorrowingResponse.builder()
                 .email(user.getEmail())
                 .booksId(books.getId())
                 .title(books.getTitle())
-                .borrowAt(borrowing.getBorrowAt())
+                .createdAt(borrowing.getCreatedAt())
                 .build();
     }
 }

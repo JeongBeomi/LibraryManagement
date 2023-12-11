@@ -15,7 +15,7 @@ public class CreateBooksResponse {
     private String title;
     private String author;
     private String isbn;
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     public static CreateBooksResponse create(Books books) {
         return CreateBooksResponse.builder()
@@ -23,7 +23,7 @@ public class CreateBooksResponse {
                 .title(books.getTitle())
                 .author(books.getAuthor())
                 .isbn(books.getIsbn())
-                .createAt(books.getCreatedAt())
+                .createdAt(books.getCreatedAt())
                 .build();
 
     }
