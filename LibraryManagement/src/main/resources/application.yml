@@ -12,8 +12,8 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-#      ddl-auto: none
-      ddl-auto: update
+      ddl-auto: none
+#      ddl-auto: update
 
     properties:
       hibernate:
@@ -26,3 +26,14 @@ spring:
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor
+
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
