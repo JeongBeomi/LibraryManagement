@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class ReadBorrowingInstance {
-    String email;
-    LocalDateTime createdAt;
-    LocalDateTime updatedAt;
+    private String email;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public static ReadBorrowingInstance create(String email, Borrowing borrowing) {
         return ReadBorrowingInstance.builder()

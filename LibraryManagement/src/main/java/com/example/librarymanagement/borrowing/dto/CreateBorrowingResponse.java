@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class CreateBorrowingResponse {
-    String email;
-    Long booksId;
-    String title;
-    LocalDateTime createdAt;
+    private String email;
+    private Long booksId;
+    private String title;
+    private LocalDateTime createdAt;
 
     public static CreateBorrowingResponse create(Books books, User user, Borrowing borrowing) {
         return CreateBorrowingResponse.builder()

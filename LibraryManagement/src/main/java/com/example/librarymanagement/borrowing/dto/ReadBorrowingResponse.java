@@ -10,5 +10,5 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ReadBorrowingResponse {
-    List<ReadBorrowingInstance> borrowingHistory;
+    private List<ReadBorrowingInstance> borrowingHistory;
 }

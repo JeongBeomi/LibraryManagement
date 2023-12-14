@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class UpdateBorrowingRequest {
-    Long booksId;
+    private Long booksId;
 }

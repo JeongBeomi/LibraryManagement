@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CreateBorrowingRequest {
-    String email;
-    Long booksId;
+    private String email;
+    private Long booksId;
 }
