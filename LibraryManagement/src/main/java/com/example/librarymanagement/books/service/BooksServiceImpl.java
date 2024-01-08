@@ -6,7 +6,7 @@ import com.example.librarymanagement.books.dto.UpdateBooksRequest;
 import com.example.librarymanagement.books.dto.UpdateBooksResponse;
 import com.example.librarymanagement.books.entity.Books;
 import com.example.librarymanagement.books.repository.BooksRepository;
-import com.example.librarymanagement.exception.exceptino_message.NotFoundExceptionMessage;
+import com.example.librarymanagement.exception.exception_message.NotFoundExceptionMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

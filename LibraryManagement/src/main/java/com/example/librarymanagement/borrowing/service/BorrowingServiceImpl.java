@@ -5,7 +5,8 @@ import com.example.librarymanagement.books.repository.BooksRepository;
 import com.example.librarymanagement.borrowing.dto.*;
 import com.example.librarymanagement.borrowing.entity.Borrowing;
 import com.example.librarymanagement.borrowing.repository.BorrowingRepository;
-import com.example.librarymanagement.exception.exceptino_message.NotFoundExceptionMessage;
+import com.example.librarymanagement.exception.exception_message.ConflictExceptionMessage;
+import com.example.librarymanagement.exception.exception_message.NotFoundExceptionMessage;
 import com.example.librarymanagement.user.entity.User;
 import com.example.librarymanagement.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,7 @@ public class BorrowingServiceImpl implements BorrowingService {
 
         // 이미 대여되어 대여가 불가능한 상태
         if (findBooks.isBorrowing()) {
-            throw new NotFoundExceptionMessage(NotFoundExceptionMessage.EXIST_BORROWING);
+            throw new ConflictExceptionMessage(ConflictExceptionMessage.EXIST_BORROWING);
         }
 
         Borrowing borrowing = Borrowing.create(findUser, findBooks);
