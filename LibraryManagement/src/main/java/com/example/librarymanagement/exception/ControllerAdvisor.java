@@ -1,10 +1,11 @@
 package com.example.librarymanagement.exception;
 
-import lombok.Builder;
+import com.example.librarymanagement.exception.exception_message.ConflictExceptionMessage;
+import com.example.librarymanagement.exception.exception_message.NotFoundExceptionMessage;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -13,12 +14,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * 2023-04-19 description    :
  */
 @RestControllerAdvice
-@Builder
+@Slf4j
 public class ControllerAdvisor {
-  @ExceptionHandler(RuntimeException.class)
+  @ExceptionHandler(NotFoundExceptionMessage.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ResponseBody
-  public ExceptionResponse NotFoundExceptionHandler(Exception e, ServerHttpRequest request){
-    return ExceptionResponse.createExceptionResponse(e, HttpStatus.BAD_REQUEST, request);
+  public ExceptionResponse notFoundExceptionHandler(NotFoundExceptionMessage e, HttpServletRequest request){
+    return ExceptionResponse.createExceptionResponse(e, HttpStatus.NOT_FOUND, request);
+  }
+
+  @ExceptionHandler(ConflictExceptionMessage.class)
+  @ResponseStatus(HttpStatus.CONFLICT)
+  public ExceptionResponse conflictExceptionMessage(ConflictExceptionMessage e, HttpServletRequest request){
+    return ExceptionResponse.createExceptionResponse(e, HttpStatus.CONFLICT, request);
   }
 }
