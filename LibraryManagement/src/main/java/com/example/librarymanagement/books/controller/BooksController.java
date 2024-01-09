@@ -13,19 +13,19 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/books")
+@RequestMapping("/book")
 public class BooksController {
     private final BooksService booksService;
 
     /**
      * 책 등록 *
-     * @param request CreateBooksRequest
-     * @return ResponseEntity
+     * @param createBooksRequest 도서 등록시 필요한 정보
+     * @return 도서등록 성공시 응답
      */
     @PostMapping
-    public ResponseEntity<CreateBooksResponse> createBooks(@RequestBody CreateBooksRequest request) {
-        CreateBooksResponse createBooksResponse = booksService.createBooks(request);
-        return ResponseEntity.created(URI.create("/books")).body(createBooksResponse);
+    public ResponseEntity<CreateBooksResponse> createBooks(@RequestBody CreateBooksRequest createBooksRequest) {
+        CreateBooksResponse createBooksResponse = booksService.createBooks(createBooksRequest);
+        return ResponseEntity.created(URI.create("/book/" + createBooksResponse.getId())).body(createBooksResponse);
     }
 
     /**
@@ -34,9 +34,9 @@ public class BooksController {
      * @param booksId PathVariable
      * @return ResponseEntity
      */
-    @PatchMapping("/{booksId}")
+    @PatchMapping("/{bookId}")
     public ResponseEntity<UpdateBooksResponse> updateBooks(@RequestBody UpdateBooksRequest request,
-                                                           @PathVariable("booksId") Long booksId) {
+                                                           @PathVariable("bookId") Long booksId) {
         UpdateBooksResponse updateBooksResponse = booksService.updateBooks(request, booksId);
         return ResponseEntity.ok().body(updateBooksResponse);
     }
