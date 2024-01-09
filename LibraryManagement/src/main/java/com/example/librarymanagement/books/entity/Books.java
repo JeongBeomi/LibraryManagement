@@ -1,5 +1,6 @@
 package com.example.librarymanagement.books.entity;
 
+import com.example.librarymanagement.books.dto.UpdateBooksRequest;
 import com.example.librarymanagement.util.BaseTimeEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -43,10 +44,16 @@ public class Books extends BaseTimeEntity {
     }
 
     // 책정보 수정
-    public Books updateBooks(String title, String author, String isbn) {
-        this.title = title;
-        this.author = author;
-        this.isbn = isbn;
+    public Books updateBooks(UpdateBooksRequest request) {
+        if (request.getTitle() != null) {
+            this.title = request.getTitle();
+        }
+        if (request.getAuthor() != null) {
+            this.author = request.getAuthor();
+        }
+        if (request.getIsbn() != null) {
+            this.isbn = request.getIsbn();
+        }
         return this;
     }
 

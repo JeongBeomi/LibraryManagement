@@ -31,8 +31,7 @@ public class BooksServiceImpl implements BooksService {
         Books findBooks = booksRepository.findById(booksId).orElseThrow(
                 () -> new NotFoundExceptionMessage(NotFoundExceptionMessage.NOT_FOUND_BOOKS)
         );
-
-        Books updateBooks = findBooks.updateBooks(request.getTitle(), request.getAuthor(), request.getIsbn());
+        Books updateBooks = findBooks.updateBooks(request);
 
         return UpdateBooksResponse.create(updateBooks);
     }
