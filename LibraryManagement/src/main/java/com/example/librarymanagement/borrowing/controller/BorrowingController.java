@@ -2,6 +2,7 @@ package com.example.librarymanagement.borrowing.controller;
 
 import com.example.librarymanagement.borrowing.dto.*;
 import com.example.librarymanagement.borrowing.service.BorrowingService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,13 @@ public class BorrowingController {
 
     /**
      * 책 대여
-     * @param request CreateBorrowingRequest
-     * @return ResponseEntity
+     * @param createBorrowingRequest 대여자 정보
+     * @return 대여 성공시 응답
      */
     @PostMapping
-    public ResponseEntity<CreateBorrowingResponse> createBorrowing(@RequestBody CreateBorrowingRequest request) {
-        CreateBorrowingResponse createBorrowingResponse = borrowingService.createBorrowing(request);
-        return ResponseEntity.created(URI.create("/books")).body(createBorrowingResponse);
+    public ResponseEntity<CreateBorrowingResponse> createBorrowing(@RequestBody @Valid CreateBorrowingRequest createBorrowingRequest) {
+        CreateBorrowingResponse createBorrowingResponse = borrowingService.createBorrowing(createBorrowingRequest);
+        return ResponseEntity.created(URI.create("/books/" + createBorrowingResponse.getBorrowingId())).body(createBorrowingResponse);
     }
 
     /**
@@ -31,7 +32,7 @@ public class BorrowingController {
      * @return ResponseEntity
      */
     @PatchMapping
-    public ResponseEntity<UpdateBorrowingResponse> updateBorrowing(@RequestBody UpdateBorrowingRequest request) {
+    public ResponseEntity<UpdateBorrowingResponse> updateBorrowing(@RequestBody @Valid UpdateBorrowingRequest request) {
         UpdateBorrowingResponse updateBorrowingResponse = borrowingService.updateBorrowing(request);
         return ResponseEntity.ok().body(updateBorrowingResponse);
     }

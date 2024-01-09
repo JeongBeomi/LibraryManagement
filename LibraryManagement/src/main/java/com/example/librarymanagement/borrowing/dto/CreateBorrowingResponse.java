@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class CreateBorrowingResponse {
+    private Long borrowingId;
     private String email;
     private Long booksId;
     private String title;
@@ -20,6 +21,7 @@ public class CreateBorrowingResponse {
 
     public static CreateBorrowingResponse create(Books books, User user, Borrowing borrowing) {
         return CreateBorrowingResponse.builder()
+                .borrowingId(borrowing.getId())
                 .email(user.getEmail())
                 .booksId(books.getId())
                 .title(books.getTitle())
