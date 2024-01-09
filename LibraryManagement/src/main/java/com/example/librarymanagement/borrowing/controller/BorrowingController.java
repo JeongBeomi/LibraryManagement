@@ -36,9 +36,9 @@ public class BorrowingController {
         return ResponseEntity.ok().body(updateBorrowingResponse);
     }
 
-    @GetMapping
-    public ResponseEntity<ReadBorrowingResponse> readBorrowingList(@RequestBody ReadBorrowingRequest request) {
-        ReadBorrowingResponse readBorrowingResponse = borrowingService.readBorrowingList(request);
+    @GetMapping("/{bookId}")
+    public ResponseEntity<ReadBorrowingResponse> readBorrowingList(@PathVariable("bookId") Long bookId) {
+        ReadBorrowingResponse readBorrowingResponse = borrowingService.readBorrowingList(bookId);
         return ResponseEntity.ok().body(readBorrowingResponse);
     }
 }

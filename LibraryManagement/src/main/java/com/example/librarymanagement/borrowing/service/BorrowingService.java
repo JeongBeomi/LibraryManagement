@@ -19,5 +19,5 @@ public interface BorrowingService {
      */
     UpdateBorrowingResponse updateBorrowing(UpdateBorrowingRequest request);
 
-    ReadBorrowingResponse readBorrowingList(ReadBorrowingRequest request);
+    ReadBorrowingResponse readBorrowingList(Long booksId);
 }

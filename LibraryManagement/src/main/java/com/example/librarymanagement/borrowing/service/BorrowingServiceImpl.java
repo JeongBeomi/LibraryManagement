@@ -63,8 +63,8 @@ public class BorrowingServiceImpl implements BorrowingService {
 
     @Override
     @Transactional
-    public ReadBorrowingResponse readBorrowingList(ReadBorrowingRequest request) {
-        List<Borrowing> borrowingsList = borrowingRepository.findByBooksIdWithUser(request.getBooksId());
+    public ReadBorrowingResponse readBorrowingList(Long booksId) {
+        List<Borrowing> borrowingsList = borrowingRepository.findByBooksIdWithUser(booksId);
 
         List<ReadBorrowingInstance> borrowingHistory = new ArrayList<>();
         for (Borrowing b : borrowingsList) {

@@ -32,13 +32,13 @@ public class BooksController {
     /**
      * 책정보 수정 *
      * @param updateBooksRequest 도서 정보 수정
-     * @param booksId 도서 id
+     * @param bookId 도서 id
      * @return 도서 정보 수정 성공시 응답
      */
     @PatchMapping("/{bookId}")
     public ResponseEntity<UpdateBooksResponse> updateBooks(@RequestBody UpdateBooksRequest updateBooksRequest,
-                                                           @PathVariable("bookId") Long booksId) {
-        UpdateBooksResponse updateBooksResponse = booksService.updateBooks(updateBooksRequest, booksId);
+                                                           @PathVariable("bookId") Long bookId) {
+        UpdateBooksResponse updateBooksResponse = booksService.updateBooks(updateBooksRequest, bookId);
         return ResponseEntity.ok().body(updateBooksResponse);
     }
 
