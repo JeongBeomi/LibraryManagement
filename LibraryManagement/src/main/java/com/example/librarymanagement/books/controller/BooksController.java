@@ -5,6 +5,7 @@ import com.example.librarymanagement.books.dto.CreateBooksResponse;
 import com.example.librarymanagement.books.dto.UpdateBooksRequest;
 import com.example.librarymanagement.books.dto.UpdateBooksResponse;
 import com.example.librarymanagement.books.service.BooksService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,21 +24,21 @@ public class BooksController {
      * @return 도서등록 성공시 응답
      */
     @PostMapping
-    public ResponseEntity<CreateBooksResponse> createBooks(@RequestBody CreateBooksRequest createBooksRequest) {
+    public ResponseEntity<CreateBooksResponse> createBooks(@RequestBody @Valid CreateBooksRequest createBooksRequest) {
         CreateBooksResponse createBooksResponse = booksService.createBooks(createBooksRequest);
         return ResponseEntity.created(URI.create("/book/" + createBooksResponse.getId())).body(createBooksResponse);
     }
 
     /**
      * 책정보 수정 *
-     * @param request UpdateBooksRequest
-     * @param booksId PathVariable
-     * @return ResponseEntity
+     * @param updateBooksRequest 도서 정보 수정
+     * @param booksId 도서 id
+     * @return 도서 정보 수정 성공시 응답
      */
     @PatchMapping("/{bookId}")
-    public ResponseEntity<UpdateBooksResponse> updateBooks(@RequestBody UpdateBooksRequest request,
+    public ResponseEntity<UpdateBooksResponse> updateBooks(@RequestBody UpdateBooksRequest updateBooksRequest,
                                                            @PathVariable("bookId") Long booksId) {
-        UpdateBooksResponse updateBooksResponse = booksService.updateBooks(request, booksId);
+        UpdateBooksResponse updateBooksResponse = booksService.updateBooks(updateBooksRequest, booksId);
         return ResponseEntity.ok().body(updateBooksResponse);
     }
 
